@@ -1,11 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import apiClient from '../utils/api-client';
-import { CanceledError } from 'axios';
+import React, { useEffect, useState } from "react";
+import apiClient from "../utils/api-client";
+import { CanceledError } from "axios";
 
+export interface Platform {
+  id: number;
+  name: string;
+  slug: string;
+}
 export interface Game {
   id: string;
   name: string;
   background_image: string;
+  parent_platforms: {
+    platform: Platform;
+  }[];
 }
 export interface Response {
   count: number;
@@ -17,16 +25,18 @@ const useGames = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const controller = new AbortController()
+    const controller = new AbortController();
     apiClient
       .get<Response>("/games", { signal: controller.signal })
       .then((res) => setGames(res.data.results))
-      .catch((error) => error instanceof CanceledError ? '' : setError(error.message));
+      .catch((error) =>
+        error instanceof CanceledError ? "" : setError(error.message)
+      );
 
-      return () => controller.abort();
+    return () => controller.abort();
   }, []);
 
-  return {games, setGames, error}
-}
+  return { games, setGames, error };
+};
 
-export default useGames
+export default useGames;
