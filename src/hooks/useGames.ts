@@ -14,6 +14,7 @@ export interface Game {
   parent_platforms: {
     platform: Platform;
   }[];
+  metacritic: number;
 }
 export interface Response {
   count: number;
