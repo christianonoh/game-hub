@@ -2,7 +2,7 @@ import { Alert, AlertIcon, AlertTitle, Stack, Text } from "@chakra-ui/react";
 import useGenres from "../hooks/useGenres";
 
 const GenresList = () => {
-  const { genres, isLoading, error } = useGenres();
+  const { data, isLoading, error } = useGenres();
 
   return (
     <>
@@ -14,7 +14,7 @@ const GenresList = () => {
         </Alert>
       )}
       <Stack>
-        {genres.map((genre) => (
+        {data.map((genre) => (
           <Text key={genre.id}>{genre.name}</Text>
         ))}
       </Stack>
