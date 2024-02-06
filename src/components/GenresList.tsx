@@ -1,23 +1,45 @@
-import { Alert, AlertIcon, AlertTitle, Stack, Text } from "@chakra-ui/react";
+import {
+  HStack,
+  Image,
+  List,
+  ListItem,
+  Spinner,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 import useGenres from "../hooks/useGenres";
+import getCroppedImageUrl from "../utils/image-url";
 
 const GenresList = () => {
   const { data, isLoading, error } = useGenres();
 
+  if (error) return null;
+  if (isLoading) {
+    return (
+      // <GenreCardSkeleton />
+      <Stack align="center">
+        <Spinner />
+      </Stack>
+    );
+  }
   return (
     <>
       <Text fontSize="xl">Genres</Text>
-      {error && (
-        <Alert status="error">
-          <AlertIcon />
-          <AlertTitle>{error}</AlertTitle>
-        </Alert>
-      )}
-      <Stack>
+      <List>
         {data.map((genre) => (
-          <Text key={genre.id}>{genre.name}</Text>
+          <ListItem key={genre.id} py={2}>
+            <HStack>
+              <Image
+                src={getCroppedImageUrl(genre.image_background)}
+                alt={genre.name}
+                boxSize="32px"
+                borderRadius="4px"
+              />
+              <Text>{genre.name}</Text>
+            </HStack>
+          </ListItem>
         ))}
-      </Stack>
+      </List>
     </>
   );
 };

@@ -27,15 +27,14 @@ const GamesGrid = () => {
         columns={{
           base: 1,
           md: 2,
-          lg: 3,
-          xl: 4,
+          lg: 3
         }}
-        gap={6}
+        gap={4}
       >
         {isLoading &&
           skeletons.map((skeleton) => (
-            <GameCardContainer key={skeleton} >
-              <GameCardSkeleton/>
+            <GameCardContainer key={skeleton}>
+              <GameCardSkeleton />
             </GameCardContainer>
           ))}
         {data.map((game) => (
