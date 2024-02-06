@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import apiClient from "../utils/api-client";
 import { CanceledError } from "axios";
 
@@ -7,6 +7,7 @@ export interface Platform {
   name: string;
   slug: string;
 }
+
 export interface Game {
   id: string;
   name: string;
@@ -16,7 +17,7 @@ export interface Game {
   }[];
   metacritic: number;
 }
-export interface Response {
+export interface GamesResponse {
   count: number;
   results: Game[];
 }
@@ -30,7 +31,7 @@ const useGames = () => {
     const controller = new AbortController();
     setLoading(true);
     apiClient
-      .get<Response>("/games", { signal: controller.signal })
+      .get<GamesResponse>("/games", { signal: controller.signal })
       .then((res) => {
         setGames(res.data.results);
         setLoading(false);
