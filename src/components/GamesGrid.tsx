@@ -31,9 +31,10 @@ const GamesGrid = ({gameQuery}: Props) => {
         columns={{
           base: 1,
           md: 2,
-          lg: 3
+          lg: 3,
+          xl: 4
         }}
-        gap={4}
+        gap={6}
         marginTop={4}
       >
         {isLoading ? (
