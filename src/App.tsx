@@ -36,7 +36,7 @@ function App() {
           />
         </GridItem>
         <GridItem gridArea="main" p={4}>
-          <HStack>
+          <HStack mb={2} spacing={4}>
             <PlatformSelector
               selectedPlatform={gameQuery.platform}
               onSelectPlatform={(platform) =>
@@ -54,7 +54,7 @@ function App() {
           <GamesGrid gameQuery={gameQuery} />
         </GridItem>
         <Show above="lg">
-          <GridItem gridArea="aside" px={4}>
+          <GridItem gridArea="aside" p={4}>
             <GenresList
               onSelectGenre={(genre: Genre) =>
                 setGameQuery({ ...gameQuery, genre })
