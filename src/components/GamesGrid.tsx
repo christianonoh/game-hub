@@ -22,7 +22,6 @@ const GamesGrid = ({selectedGenre}: Props) => {
 
   return (
     <>
-      <Text fontSize="xl">Games</Text>
       {error && (
         <Alert status="error">
           <AlertIcon />
