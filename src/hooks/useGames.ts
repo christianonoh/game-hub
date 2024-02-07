@@ -21,6 +21,11 @@ export interface GamesResponse {
   results: Game[];
 }
 
-const useGames = (selectedGenre: Genre | null) => useData<Game>('/games', {params: {genres: selectedGenre?.id}}, [selectedGenre?.id]);
+interface Props {
+  selectedGenre: Genre | null;
+  selectedPlatform: Platform | null;
+}
+
+const useGames = ({selectedGenre, selectedPlatform}: Props) => useData<Game>('/games', {params: {genres: selectedGenre?.id, parent_platforms: selectedPlatform?.id}}, [selectedGenre?.id, selectedPlatform?.id]);
 
 export default useGames;
