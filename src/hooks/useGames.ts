@@ -15,6 +15,7 @@ export interface Game {
     platform: Platform;
   }[];
   metacritic: number;
+  rating_top: number;
 }
 export interface GamesResponse {
   count: number;
@@ -29,7 +30,7 @@ const useGames = (gameQuery: GameQuery) =>
         genres: gameQuery.genre?.id,
         parent_platforms: gameQuery.platform?.id,
         ordering: gameQuery.sort?.id,
-        search: gameQuery.searchText
+        search: gameQuery.searchText,
       },
     },
     [gameQuery]
